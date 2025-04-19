@@ -63,6 +63,20 @@ const ShipmentSchema = new mongoose.Schema({
         enum: ['Pending', 'In Transit', 'Delayed', 'Delivered', 'Cancelled'],
         default: 'Pending',
     },
+
+    detailedRouteGeometry: {
+        // Store GeoJSON LineString object
+        type: {
+           type: String,
+           enum: ['LineString'],
+           // required: true // Make optional, fallback if routing fails
+        },
+        coordinates: {
+           type: [[Number]], // Array of [longitude, latitude] pairs
+           // required: true
+        }
+    },
+
     // Optional fields
     actualDeliveryDate: {
         type: Date,
